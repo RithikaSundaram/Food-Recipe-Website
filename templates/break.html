@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ... -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+
+<div class="container mx-auto mt-8 flex space-x-4">
+  <!-- Breakfast Recipe Bar 1 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/dosa.jpg" alt="Dosa" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="1">View Recipe</button>
+    </div>
+  </div>
+ <!-- Breakfast Recipe Bar 2 -->
+ <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/idly.jpg" alt="Idly" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 15 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="2">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 3 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/idiyappam.jpg" alt="Idiyappam" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 20 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="3">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 4 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/poori.jpg" alt="Poori" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 20 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="4">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 5 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/pongal.jpg" alt="Pongal" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 30 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="5">View Recipe</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Modal HTML -->
+<div id="recipeModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-50">
+  <div class="relative w-full max-w-md p-4 mx-auto mt-10">
+    <div class="bg-white rounded-md p-4">
+      <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
+      <h3 class="text-lg font-bold mb-2">Description:</h3>
+      <p id="modalDescription"></p>
+      <h3 class="text-lg font-bold mb-2">Ingredients:</h3>
+      <ul id="modalIngredients"></ul>
+      <h3 class="text-lg font-bold mb-2">Procedure:</h3>
+      <div id="modalProcedure"></div>
+      <iframe id="modalVideo" width="100%" height="315" src="" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+      <button id="closeModal" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add this script to the end of your body -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    const recipes = {
+      1: {
+        title: "Dosa Recipe",
+        description: "Dosa, a popular South Indian delicacy, is a thin, crispy pancake made from a fermented batter of rice and urad dal.",
+        ingredients: ["1 cup rice flour", "1/2 cup urad dal", "Water", "Salt"],
+        procedure: [
+          "1.Soak 1 cup rice.",
+          "2.1/2 cup urad dal, and 1/4 cup chana dal with 1/2 tsp fenugreek seeds for 4-6 hours.",
+          "3.Grind into a smooth batter.","Add salt and let it ferment for 8-12 hours.",
+          "4.Heat a skillet, pour a ladle of batter, and spread thinly in a circular motion.",
+          "5.Drizzle oil around the edges and cook until the edges lift and turn golden.",
+          "6.Flip and cook the other side until crispy.",
+          "7.Serve hot with coconut chutney or sambar.",
+          "8.Enjoy the delightful flavours of homemade dosa!"
+        ],
+        videoID: "k2HzoJM9Xog"
+      },
+      2: {
+        title: "Idly Recipe",
+        description: "Idly is a popular South Indian dish made from fermented rice and urad dal batter, resulting in soft, fluffy steamed rice cakes.",
+        ingredients: ["1 cup rice flour", "1/2 cup urad dal", "Water", "Salt"],
+        procedure: [
+        "1.Rinse 2 cups of idli rice and 1 cup of urad dal separately until water runs clear.",
+        "2.Soak rice and urad dal separately in water, adding 1/2 teaspoon fenugreek seeds to urad dal.",
+        "3.Soak for 4-6 hours or overnight.",
+       "4. Drain water from soaked urad dal and rice.",
+        "5.Grind urad dal with fenugreek seeds until smooth and fluffy, using as little water as possible.",
+        "6.Grind rice into a slightly coarse batter.",
+        "7.Mix urad dal and rice batters in a large bowl, add salt, cover, and ferment for 8-12 hours or overnight until the batter doubles in volume."
+     ],
+        videoID: "TREIoadQq8c"
+      },
+      3: {
+        title: "Idiyappam Recipe",
+        description: "Appam, a delightful South Indian dish, is a soft and fluffy pancake with crispy edges. Made from a fermented rice and coconut batter, it has a unique bowl-shaped appearance",
+        ingredients: ["1. 2 cups raw rice",
+"2. 1/2 cup cooked rice",
+"3. 1/2 cup grated coconut",
+"4. 1/4 teaspoon active dry yeast",
+"5. 1 teaspoon sugar",
+"6. 1/2 teaspoon salt",
+"7. 1/2 cup coconut milk (thick)",
+"8. Water (as needed)"],
+        procedure: [ "1. Soak raw rice for 4-6 hours; drain and blend with cooked rice, grated coconut, yeast, sugar, and salt to form a smooth batter.",
+"2. Allow the batter to ferment for 8-12 hours or overnight.",
+"3. Add thick coconut milk to the batter and mix well. Adjust consistency with water if needed.",
+"4. Heat an appam pan, pour a ladle of batter, and swirl the pan to spread the batter thinly with a thicker center.",
+"5. Cover and cook until the edges become crispy, and the center is soft and spongy.",
+"6. Serve hot appams with coconut milk or your favorite curry.",
+"Enjoy the soft and lacy texture of appams with the richness of coconut milk!"
+      
+        ],
+        videoID: "IXL1NINkGgA"
+      },
+      4: {
+        title: "Poori Recipe",
+        description: "Puri, a popular Indian deep-fried bread, is made from unleavened wheat flour dough.  Often served with potato curry or chickpeas, puri is a versatile and delicious staple in Indian cuisine.",
+        ingredients: ["1. 2 cups raw rice",
+"2. 1/2 cup cooked rice",
+"3. 1/2 cup grated coconut",
+"4. 1/4 teaspoon active dry yeast",
+"5. 1 teaspoon sugar",
+"6. 1/2 teaspoon salt",
+"7. 1/2 cup coconut milk (thick)",
+"8. Water (as needed)"],
+        procedure: [
+        "1. Soak raw rice for 4-6 hours; drain and blend with cooked rice, grated coconut, yeast, sugar, and salt to form a smooth batter.",
+"2. Allow the batter to ferment for 8-12 hours or overnight.",
+"3. Add thick coconut milk to the batter and mix well. Adjust consistency with water if needed.",
+"4. Heat an appam pan, pour a ladle of batter, and swirl the pan to spread the batter thinly with a thicker center.",
+"5. Cover and cook until the edges become crispy, and the center is soft and spongy.",
+"6. Serve hot appams with coconut milk or your favorite curry.",
+"Enjoy the soft and lacy texture of appams with the richness of coconut milk!"
+        ],
+        videoID: "6HKu_8gdr4A"
+      },
+      5: {
+        title: "Pongal Recipe",
+        description: "Pongal, a traditional South Indian dish, is a flabourfulll and comforting rice and lentil porridge.",
+        ingredients: ["1. 1 cup rice",
+"2. 1/4 cup split yellow moong dal (lentils)",
+"3. 4 cups water",
+"4. 1/2 teaspoon black pepper, crushed",
+"5. 1/2 teaspoon cumin seeds",
+"6. 1/2 inch ginger, grated",
+"7. A pinch of asafoetida (hing)",
+"8. 2 tablespoons ghee",
+"9. Cashews and curry leaves for garnish",
+"10. Salt to taste"],
+        procedure: [
+        "1. Rinse rice and moong dal, then combine with water in a pressure cooker.",
+"2. Pressure cook until soft and mushy.",
+"3. In a separate pan, heat ghee and add cumin seeds, crushed black pepper, grated ginger, and asafoetida.",
+"4. Sauté briefly, then add cashews and curry leaves, frying until the cashews are golden.",
+"5. Add the cooked rice and dal mixture to the pan, stirring well.",
+"6. Season with salt and let it simmer for a few minutes.",
+"7. Garnish with more ghee, if desired, and serve hot.",
+        ],
+        videoID: "WR5JJP5MyN4"
+      },
+
+
+    };
+
+    // Show the modal with dynamic content when clicking the "View Recipe" button
+    $('.view-recipe').on('click', function() {
+      // Get the recipe ID from the data attribute
+      const recipeID = $(this).data('recipe-id');
+      const recipeDetails = recipes[recipeID];
+
+      // Populate modal with dynamic content
+      $('#modalTitle').text(recipeDetails.title);
+      $('#modalDescription').text(recipeDetails.description);
+      $('#modalIngredients').html(recipeDetails.ingredients.map(ingredient => `<li>${ingredient}</li>`).join(''));
+      $('#modalProcedure').html(recipeDetails.procedure.map(step => `<p>${step}</p>`).join(''));
+      $('#modalVideo').attr('src', `https://www.youtube.com/embed/${recipeDetails.videoID}`);
+
+      // Show the modal
+      $('#recipeModal').removeClass('hidden');
+    });
+
+    // Close the modal when clicking the close button or outside the modal
+    $('#closeModal, #recipeModal').on('click', function() {
+      $('#recipeModal').addClass('hidden');
+    });
+
+    // Prevent modal from closing when clicking inside the modal
+    $('.modal-content').on('click', function(event) {
+      event.stopPropagation();
+    });
+  });
+</script>
+
+<!-- Your footer or other content goes here -->
+
+</body>
+</html>

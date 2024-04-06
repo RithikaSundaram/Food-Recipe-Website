@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ... -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+
+
+    <div class="container mx-auto mt-8 flex space-x-4">
+        <!-- Breakfast Recipe Bar 1 -->
+        <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+          <!-- Image -->
+          <img src="C:/Users/USER/Pictures/brownie.jpg" alt="Brownie" class="w-full h-auto max-w-xs">
+          <!-- Recipe Details -->
+          <div class="p-4">
+            <p class="text-lg font-bold mb-2">Preparation Time: 30 minutes</p>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="1">View Recipe</button>
+          </div>
+        </div>
+       <!-- Breakfast Recipe Bar 2 -->
+       <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+          <!-- Image -->
+          <img src="C:/Users/USER/Pictures/honey.jpg" alt="honey" class="w-full h-auto max-w-xs">
+          <!-- Recipe Details -->
+          <div class="p-4">
+            <p class="text-lg font-bold mb-2">Preparation Time: 30 minutes</p>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="2">View Recipe</button>
+          </div>
+        </div>
+
+ 
+
+
+
+<!-- Modal HTML -->
+<div id="recipeModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-50">
+  <div class="relative w-full max-w-md p-4 mx-auto mt-10">
+    <div class="bg-white rounded-md p-4">
+      <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
+      <h3 class="text-lg font-bold mb-2">Description:</h3>
+      <p id="modalDescription"></p>
+      <h3 class="text-lg font-bold mb-2">Ingredients:</h3>
+      <ul id="modalIngredients"></ul>
+      <h3 class="text-lg font-bold mb-2">Procedure:</h3>
+      <div id="modalProcedure"></div>
+      <iframe id="modalVideo" width="100%" height="315" src="" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+      <button id="closeModal" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add this script to the end of your body -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    const recipes = {
+      1: {
+        title: "Brownie",
+        description: "Brownie,Savor the irresistible delight of homemade brownies, a simple recipe delivering rich, fudgy bliss in every decadent bite.",
+        ingredients: ["1. 1 cup (2 sticks) unsalted butter",
+"2. 2 cups granulated sugar",
+"3. 4 large eggs",
+"4. 1 teaspoon vanilla extract",
+"5. 1 cup all-purpose flour",
+"6. 1/2 cup unsweetened cocoa powder",
+"7. 1/4 teaspoon salt",
+"8. 1 cup chopped nuts (optional)",
+"9. Powdered sugar for dusting (optional)"],
+        procedure: [
+         "1. Preheat oven to 350°F (175°C)",
+ "2. Melt 1 cup (2 sticks) unsalted butter in a saucepan",
+"3. Combine 2 cups granulated sugar, 4 large eggs, and 1 teaspoon vanilla extract in a mixing bowl",
+ "4. Sift in 1 cup all-purpose flour, 1/2 cup unsweetened cocoa powder, and 1/4 teaspoon salt; mix well",
+ "5. Fold in 1 cup chopped nuts if desired, then pour the batter into a greased or lined 9x13-inch baking pan",
+  "6. Bake for 25-30 minutes, cool, and optionally dust with powdered sugar before cutting into squares"],
+        videoID: "lIb_741_dIw"
+      },
+
+
+      
+
+
+      2: {
+        title: "HoneyCake",
+        description: "Honeycake,Savor the exquisite medley of honey, spices, and coffee in this moist and aromatic honey cake, a delightful symphony of flavors in every bite.",
+        ingredients: ["1. 2 1/2 cups all-purpose flour",
+"2. 2 teaspoons baking powder",
+"3. 1/2 teaspoon baking soda",
+"4. 1/2 teaspoon salt",
+"5. 1 teaspoon ground cinnamon",
+"6. 1/2 teaspoon ground cloves",
+"7. 1/2 cup vegetable oil",
+"8. 1 cup honey",
+"9. 1 1/2 cups granulated sugar",
+"10. 1/2 cup brewed strong coffee, cooled",
+"11. 3 large eggs",
+"12. 1 teaspoon vanilla extract",
+"13. 1/2 cup orange juice"],
+        procedure: [
+        "1. Preheat oven to 350°F (175°C). Grease and flour a 9x13-inch baking pan.",
+"2. In a bowl, whisk 2 1/2 cups all-purpose flour, 2 tsp baking powder, 1/2 tsp baking soda, 1/2 tsp salt, 1 tsp ground cinnamon, and 1/2 tsp ground cloves.",
+"3. In a large bowl, mix 1/2 cup vegetable oil, 1 cup honey, 1 1/2 cups granulated sugar, 1/2 cup cooled brewed coffee, 3 large eggs, 1 tsp vanilla extract, and 1/2 cup orange juice.",
+"4. Gradually add the dry ingredients to the wet ingredients, mixing just until combined.",
+"5. Pour the batter into the prepared pan and bake for 40-45 minutes or until a toothpick comes out clean.",
+"6. Cool for 15 minutes in the pan, then transfer to a wire rack to cool completely. Optional: frost with honey or cream cheese frosting."
+        ],
+        videoID: "U90T3iZFLAE"
+      },
+
+
+    };
+
+    // Show the modal with dynamic content when clicking the "View Recipe" button
+    $('.view-recipe').on('click', function() {
+      // Get the recipe ID from the data attribute
+      const recipeID = $(this).data('recipe-id');
+      const recipeDetails = recipes[recipeID];
+
+      // Populate modal with dynamic content
+      $('#modalTitle').text(recipeDetails.title);
+      $('#modalDescription').text(recipeDetails.description);
+      $('#modalIngredients').html(recipeDetails.ingredients.map(ingredient => `<li>${ingredient}</li>`).join(''));
+      $('#modalProcedure').html(recipeDetails.procedure.map(step => `<p>${step}</p>`).join(''));
+      $('#modalVideo').attr('src', `https://www.youtube.com/embed/${recipeDetails.videoID}`);
+
+      // Show the modal
+      $('#recipeModal').removeClass('hidden');
+    });
+
+    // Close the modal when clicking the close button or outside the modal
+    $('#closeModal, #recipeModal').on('click', function() {
+      $('#recipeModal').addClass('hidden');
+    });
+
+    // Prevent modal from closing when clicking inside the modal
+    $('.modal-content').on('click', function(event) {
+      event.stopPropagation();
+    });
+  });
+</script>
+
+<!-- Your footer or other content goes here -->
+
+</body>
+</html>

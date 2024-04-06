@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+
+<div class="container mx-auto mt-8 flex space-x-4">
+  <!-- Breakfast Recipe Bar 1 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/pinejuice.jpg" alt="Pineapple" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="1">View Recipe</button>
+    </div>
+  </div>
+ <!-- Breakfast Recipe Bar 2 -->
+ <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/applejuice.jpg" alt="Apple" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="2">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 3 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/strawberry.jpg" alt="Starwberry" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="3">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 4 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/beetroot.jpg" alt="Beetroot" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="4">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 5 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/strawberry.jpg" alt="Watermelon" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="5">View Recipe</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Modal HTML -->
+<div id="recipeModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-50">
+  <div class="relative w-full max-w-md p-4 mx-auto mt-10">
+    <div class="bg-white rounded-md p-4">
+      <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
+      <h3 class="text-lg font-bold mb-2">Description:</h3>
+      <p id="modalDescription"></p>
+      <h3 class="text-lg font-bold mb-2">Ingredients:</h3>
+      <ul id="modalIngredients"></ul>
+      <h3 class="text-lg font-bold mb-2">Procedure:</h3>
+      <div id="modalProcedure"></div>
+      <iframe id="modalVideo" width="100%" height="315" src="" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+      <button id="closeModal" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add this script to the end of your body -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    const recipes = {
+      1: {
+        title: "PineApple Juice Recipe",
+        description:"Pineapple juice,Exotic and tropical, pineapple delights the taste buds with its juicy, sweet, and tangy flavor. A refreshing fruit that adds a burst of sunshine to any dish or drink.",
+        ingredients: ["1.1 medium-sized pineapple, peeled, cored, and chopped",
+"2. 1 tablespoon lime or lemon juice",
+"3.2 tablespoons honey or sugar (optional, for sweetness)",
+"4.2 cups cold water",
+"5.Ice cubes (optional)",
+"6.Fresh mint leaves for garnish"],
+        procedure: [
+        "1. In a blender, combine the chopped pineapple, lime or lemon juice, and honey or sugar.",
+"2. Blend until smooth, adding cold water gradually to reach the desired consistency.",
+"3. Strain the pineapple mixture through a fine mesh sieve or cheesecloth into a pitcher to remove any fibers.",
+"4. Taste the juice and adjust sweetness if necessary by adding more honey or sugar. Stir well.",
+"5. Refrigerate the pineapple juice for at least 1 hour to chill.",
+"6. Serve over ice cubes if desired, garnish with fresh mint leaves, and enjoy the tropical goodness of homemade pineapple juice!" ],
+        videoID: "TeRdcms8J9k"
+      },
+
+
+      2: {
+        title: "Apple Juice Recipe",
+        description: "Applejuice,Sweet and refreshing, apple juice delights the taste buds with its natural flavor. A crisp, golden beverage that captures the essence of ripe apples.",
+        ingredients: ["1. 6-8 medium-sized apples (a mix of sweet and tart varieties)",
+"2.1 tablespoon lemon juice",
+"3.4 cups water",
+" 4.1/4 cup honey or sugar (optional, depending on desired sweetness)"],
+        procedure: ["1. Wash and chop the apples into quarters, removing the cores and seeds.",
+"2. In a large pot, combine the chopped apples, water, and lemon juice. Bring to a boil and then reduce the heat to simmer for 20-30 minutes or until the apples are soft and mushy.",
+"3. Mash the apples in the pot using a potato masher or a fork.",
+"4. Allow the mixture to cool slightly before straining it through a fine mesh sieve or cheesecloth into a clean bowl or pitcher. Use a spoon to press down and extract as much juice as possible.",
+"5. If you prefer a sweeter juice, add honey or sugar to the warm juice, stirring until it dissolves. Adjust sweetness to taste.",
+"6. Refrigerate the apple juice for at least 2 hours before serving. Serve over ice and enjoy your homemade apple juice!" ],
+        videoID: "eLBkTF7LSeo"
+      },
+
+
+      3: {
+        title: "Strawberry Juice Recipe",
+        description: "Strawberry juice,Fresh and vibrant, strawberry juice bursts with the sweet essence of ripe strawberries. A delightful and refreshing beverage to savor on a warm day.",
+        ingredients: ["1.2 cups fresh strawberries, hulled and halved",
+"2.1/4 cup sugar (adjust according to taste)",
+"3.1 tablespoon lemon juice",
+"4.2 cups cold water",
+"5.Ice cubes (optional)"],
+        procedure: ["1. In a blender, combine the fresh strawberries, sugar, and lemon juice.",
+"2. Blend until smooth, ensuring the strawberries are well pureed.",
+"3. Strain the mixture through a fine mesh sieve or cheesecloth into a pitcher to remove seeds and pulp.",
+"4. Add cold water to the strained strawberry puree and mix well.",
+"5. Taste the juice and adjust sweetness if needed by adding more sugar.",
+"6. Refrigerate the strawberry juice for at least 1 hour to chill.",
+"7. Serve over ice cubes if desired, and enjoy the refreshing taste of homemade strawberry juice!"],
+        videoID: "6X-z0JaaSgM"
+      },
+
+
+      4: {
+        title: "Beetroot Recipe",
+        description: "Beetroot juice,Bold and earthy, beetroot juice captivates the palate with its rich, vibrant hue and robust, slightly sweet flavor.",
+        ingredients: ["1. 2 medium-sized beetroots, peeled and chopped",
+"2.1 apple, cored and chopped",
+"3.1 carrot, peeled and chopped",
+"4.1-inch piece of ginger, peeled",
+"5.1 tablespoon lemon juice",
+"6.2 cups cold water",
+"7.Honey or agave syrup (optional, for sweetness)",
+"8.Ice cubes (optional)"],
+        procedure: ["1. In a blender, combine chopped beetroots, apple, carrot, ginger, and lemon juice.",
+"2. Blend until smooth, adding cold water gradually to achieve the desired consistency.",
+"3. Strain the mixture through a fine mesh sieve or cheesecloth into a pitcher to remove pulp.",
+"4. Taste the juice and add honey or agave syrup if a sweeter taste is desired. Stir well.",
+"5. Refrigerate the beetroot juice for at least 1 hour to chill.",
+"6. Serve over ice cubes if desired and relish the refreshing and nutritious homemade beetroot juice!"
+        ],
+        videoID: "2aHbMhcd4Eg"
+      },
+
+
+      5: {
+        title: "Watermelon Recipe",
+        description:"Watermelon juice,Fresh and vibrant, watermelon juice bursts with the sweet essence of ripe watermelon. A delightful and refreshing beverage to savor on a warm day.",
+        ingredients: ["1.2 cups fresh watermelon, hulled and halved",
+"2.1/4 cup sugar (adjust according to taste)",
+"3.1 tablespoon lemon juice",
+"4.2 cups cold water",
+"5.Ice cubes (optional)"],
+        procedure: ["1. In a blender, combine the fresh melons, sugar, and lemon juice.",
+"2. Blend until smooth, ensuring the melons are well pureed.",
+"3. Strain the mixture through a fine mesh sieve or cheesecloth into a pitcher to remove seeds and pulp.",
+"4. Add cold water to the strained strawberry puree and mix well.",
+"5. Taste the juice and adjust sweetness if needed by adding more sugar.",
+"6. Refrigerate the strawberry juice for at least 1 hour to chill.",
+"7. Serve over ice cubes if desired, and enjoy the refreshing taste of homemade watermelon juice!"
+        ],
+        videoID: "6X-z0JaaSgM"
+      },
+
+
+    };
+
+    // Show the modal with dynamic content when clicking the "View Recipe" button
+    $('.view-recipe').on('click', function() {
+      // Get the recipe ID from the data attribute
+      const recipeID = $(this).data('recipe-id');
+      const recipeDetails = recipes[recipeID];
+
+      // Populate modal with dynamic content
+      $('#modalTitle').text(recipeDetails.title);
+      $('#modalDescription').text(recipeDetails.description);
+      $('#modalIngredients').html(recipeDetails.ingredients.map(ingredient => `<li>${ingredient}</li>`).join(''));
+      $('#modalProcedure').html(recipeDetails.procedure.map(step => `<p>${step}</p>`).join(''));
+      $('#modalVideo').attr('src', `https://www.youtube.com/embed/${recipeDetails.videoID}`);
+
+      // Show the modal
+      $('#recipeModal').removeClass('hidden');
+    });
+
+    // Close the modal when clicking the close button or outside the modal
+    $('#closeModal, #recipeModal').on('click', function() {
+      $('#recipeModal').addClass('hidden');
+    });
+
+    // Prevent modal from closing when clicking inside the modal
+    $('.modal-content').on('click', function(event) {
+      event.stopPropagation();
+    });
+  });
+</script>
+
+<!-- Your footer or other content goes here -->
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ... -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+
+<div class="container mx-auto mt-8 flex space-x-4">
+  <!-- Breakfast Recipe Bar 1 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/bisebelabath.jpg" alt="Bisi Bele Bath" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 25 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="1">View Recipe</button>
+    </div>
+  </div>
+ <!-- Breakfast Recipe Bar 2 -->
+ <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/Mutton briyani.jpg" alt="Mutton Briyani" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 30 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="2">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 3 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/Chicken chukka.jpg" alt="Idiyappam" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 30 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="3">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 4 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/Potato varuval.jpg" alt="Poori" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 20 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="4">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 5 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/lemonrice.jpg" alt="Pongal" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="5">View Recipe</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Modal HTML -->
+<div id="recipeModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-50">
+  <div class="relative w-full max-w-md p-4 mx-auto mt-10">
+    <div class="bg-white rounded-md p-4">
+      <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
+      <h3 class="text-lg font-bold mb-2">Description:</h3>
+      <p id="modalDescription"></p>
+      <h3 class="text-lg font-bold mb-2">Ingredients:</h3>
+      <ul id="modalIngredients"></ul>
+      <h3 class="text-lg font-bold mb-2">Procedure:</h3>
+      <div id="modalProcedure"></div>
+      <iframe id="modalVideo" width="100%" height="315" src="" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+      <button id="closeModal" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add this script to the end of your body -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    const recipes = {
+      1: {
+        title: "Bisi Bele Bath Recipe",
+        description: "Bisi Bele Bath is a savory and aromatic one-pot dish from Karnataka, India.",
+        ingredients: ["1. 1 cup rice",
+"2. 1/2 cup toor dal (split pigeon peas)",
+"3. 1 cup mixed vegetables (carrots, beans, peas)",
+"4. 1 small lemon-sized tamarind, soaked in water",
+"5. 2 tablespoons Bisi Bele Bath spice powder",
+"6. 1 tablespoon jaggery",
+"7. Salt to taste",
+"8. 3 tablespoons ghee",
+"9. A handful of cashews",
+"10. Fresh coriander leaves for garnish"],
+        procedure: [
+        "1. Cook rice and toor dal together until soft. Set aside.",
+"2. In a separate pot, cook the mixed vegetables until tender.",
+"3. Extract tamarind pulp from soaked tamarind and add it to the vegetables.",
+"4. Add Bisi Bele Bath spice powder, jaggery, and salt. Simmer until well-cooked.",
+"5. Combine the cooked rice-dal mixture with the tamarind-vegetable mix. Mix well.",
+"6. In a small pan, heat ghee, fry cashews until golden, and add to the Bisi Bele Bath.",
+"7. Garnish with fresh coriander leaves." ],
+        videoID: "Ae-eV4UtXkA"
+      },
+
+
+      2: {
+        title: "Mutton Briyani Recipe",
+        description: "Mutton Biryani is a savory and aromatic dish that combines succulent mutton pieces with fragrant basmati rice.",
+        ingredients: ["1. 2 cups basmati rice, soaked for 30 minutes",
+"2. 500g mutton, cleaned and cut into pieces",
+"3. 1 cup yogurt",
+"4. 2 large onions, thinly sliced",
+"5. 1/4 cup cooking oil or ghee",
+"6. 2 tomatoes, chopped",
+"7. 2 tablespoons biryani masala",
+"8. 1 tablespoon ginger-garlic paste",
+"9. 1 teaspoon red chili powder",
+"10. Fresh coriander and mint leaves for garnish",
+"11. Whole spices (bay leaf, cinnamon, cardamom, cloves)"],
+        procedure: [
+        "1. Cook the soaked basmati rice until it's 70% done, drain, and set aside.",
+"2. In a separate pot, heat oil or ghee and sauté sliced onions until golden brown.",
+"3. Add mutton pieces, ginger-garlic paste, and cook until the meat is browned.",
+"4. Stir in chopped tomatoes, biryani masala, red chili powder, and yogurt, cook until the oil separates.",
+"5. In a large biryani pot, layer half-cooked rice over the mutton mixture, repeat with another layer.",
+"6. Sprinkle fried onions, biryani masala, and chopped coriander and mint leaves on top.",
+"7. Seal the pot with foil or dough, and cook on low heat for 25-30 minutes or until the rice is fully cooked and aromatic.",
+"8. Gently fluff the biryani with a fork, ensuring the layers mix.",
+
+"Serve hot Mutton Biryani with raita or a side salad for a flavorful and indulgent meal."
+     ],
+        videoID: "sJ7O_eGg40Y"
+      },
+
+
+      3: {
+        title: "Chicken Chukka Recipe",
+        description: "Chicken Chukka is a spicy and flavourful South Indian dry chicken dish.",
+        ingredients: ["1. 500g chicken",
+"2. 2 tablespoons oil",
+"3. 1 large onion, finely sliced",
+"4. 1 tablespoon ginger-garlic paste",
+"5. 2 tomatoes, chopped",
+"6. 1 teaspoon turmeric powder",
+"7. 2 teaspoons red chili powder",
+"8. 1 tablespoon coriander powder",
+"9. 1 teaspoon garam masala",
+"10. Salt"],
+        procedure: ["1. In a pan, heat oil and sauté sliced onions until golden brown",
+"2. Add ginger-garlic paste and cook until the raw smell disappears",
+"3. Add chopped tomatoes, turmeric powder, red chili powder, coriander powder, garam masala, and salt. Cook until the tomatoes are soft",
+"4. Add chicken pieces and cook until they are well-coated with the masala and browned",
+"5. In a separate pan, heat a little oil, add curry leaves, mustard seeds, and sliced shallots for tempering. Pour over the chicken",
+"6. Garnish with fresh coriander leaves.",
+"Serve hot Chicken Chukka as a side dish with rice, naan, or roti for a spicy and satisfying meal." ],
+        videoID: "ksvGGo9VBAXs"
+      },
+
+
+      4: {
+        title: "Potata Varuval Recipe",
+        description: "Potato Varuval is a delectable South Indian dish featuring diced potatoes seasoned with a medley of aromatic spices.",
+        ingredients: ["1. 4 large potatoes, peeled and diced",
+"2. 2 tablespoons oil",
+"3. 1 teaspoon mustard seeds",
+"4. A sprig of curry leaves",
+"5. 1 onion, finely chopped",
+"6. 2 teaspoons ginger-garlic paste",
+"7. 1 teaspoon turmeric powder",
+"8. 1 tablespoon red chili powder (adjust to taste)",
+"9. 1 tablespoon coriander powder",
+"10. Salt to taste",
+"11. Fresh coriander leaves for garnish"],
+        procedure: [
+        "1. In a pan, heat oil and add mustard seeds. Once they splutter, add curry leaves.",
+"2. Add finely chopped onions and sauté until golden brown.",
+"3. Stir in ginger-garlic paste, turmeric powder, red chili powder, and coriander powder. Cook until the raw aroma disappears.",
+"4. Add diced potatoes and mix well to coat them with the spices.",
+"5. Cover and cook on medium heat, stirring occasionally, until the potatoes are tender and golden.",
+"6. Season with salt and garnish with fresh coriander leaves.",
+
+"Serve hot Potato Varuval as a side dish with rice or roti for a flavorful and satisfying experience.",
+        ],
+        videoID: "WSmvtDkikeo"
+      },
+
+
+      5: {
+        title: "Lemon rice Recipe",
+        description: "Lemon Rice is a zesty and aromatic South Indian dish made by tempering cooked rice with mustard seeds, curry leaves, and turmeric also with the addition of tangy lemon juice.",
+        ingredients: ["1. 2 cups cooked rice (preferably cooled)",
+"2. 2 tablespoons oil",
+"3. 1 teaspoon mustard seeds",
+"4. A handful of curry leaves",
+"5. 1/2 cup peanuts",
+"6. 2 green chilies, finely chopped",
+"7. 1/2 teaspoon turmeric powder",
+"8. Salt to taste",
+"9. 2 tablespoons lemon juice",
+"10. Fresh coriander leaves for garnish"],
+        procedure: [
+        "1. In a pan, heat oil and add mustard seeds. Once they splutter, add curry leaves.",
+"2. Add peanuts and sauté until they turn golden brown.",
+"3. Stir in chopped green chilies and turmeric powder, cooking for a minute.",
+"4. Add cooked rice, salt, and lemon juice. Mix gently to ensure the rice is well-coated.",
+"5. Garnish with fresh coriander leaves.",
+
+"Serve Lemon Rice on its own or with yogurt and pickle for a quick, flavorful, and tangy meal."
+        ],
+        videoID: "w0gZ5xvmOAk"
+      },
+
+
+    };
+
+    // Show the modal with dynamic content when clicking the "View Recipe" button
+    $('.view-recipe').on('click', function() {
+      // Get the recipe ID from the data attribute
+      const recipeID = $(this).data('recipe-id');
+      const recipeDetails = recipes[recipeID];
+
+      // Populate modal with dynamic content
+      $('#modalTitle').text(recipeDetails.title);
+      $('#modalDescription').text(recipeDetails.description);
+      $('#modalIngredients').html(recipeDetails.ingredients.map(ingredient => `<li>${ingredient}</li>`).join(''));
+      $('#modalProcedure').html(recipeDetails.procedure.map(step => `<p>${step}</p>`).join(''));
+      $('#modalVideo').attr('src', `https://www.youtube.com/embed/${recipeDetails.videoID}`);
+
+      // Show the modal
+      $('#recipeModal').removeClass('hidden');
+    });
+
+    // Close the modal when clicking the close button or outside the modal
+    $('#closeModal, #recipeModal').on('click', function() {
+      $('#recipeModal').addClass('hidden');
+    });
+
+    // Prevent modal from closing when clicking inside the modal
+    $('.modal-content').on('click', function(event) {
+      event.stopPropagation();
+    });
+  });
+</script>
+
+<!-- Your footer or other content goes here -->
+
+</body>
+</html>

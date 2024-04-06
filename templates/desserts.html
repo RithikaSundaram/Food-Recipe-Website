@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ... -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+
+<div class="container mx-auto mt-8 flex space-x-4">
+  <!-- Breakfast Recipe Bar 1 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/Basundi.jpg" alt="Basundi" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="1">View Recipe</button>
+    </div>
+  </div>
+ <!-- Breakfast Recipe Bar 2 -->
+ <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/gulobjamun.jpg" alt="gulabjamun" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="2">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 3 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/kesari.jpg" alt="Palak Paneer" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 20 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="3">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 4 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/Payasam.jpg" alt="Poori" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="4">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 5 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/cake.jpg" alt="Pongal" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="5">View Recipe</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Modal HTML -->
+<div id="recipeModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-50">
+  <div class="relative w-full max-w-md p-4 mx-auto mt-10">
+    <div class="bg-white rounded-md p-4">
+      <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
+      <h3 class="text-lg font-bold mb-2">Description:</h3>
+      <p id="modalDescription"></p>
+      <h3 class="text-lg font-bold mb-2">Ingredients:</h3>
+      <ul id="modalIngredients"></ul>
+      <h3 class="text-lg font-bold mb-2">Procedure:</h3>
+      <div id="modalProcedure"></div>
+      <iframe id="modalVideo" width="100%" height="315" src="" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+      <button id="closeModal" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add this script to the end of your body -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    const recipes = {
+      1: {
+        title: "Basundi Recipe",
+        description:"Basundi is a rich and creamy Indian dessert made by simmering sweetened condensed milk until it thickens.",
+        ingredients: ["1. Pour 1 liter full-fat milk",
+"2. 1/2 cup sugar (adjust to taste)",
+"3. 1/2 teaspoon cardamom powder",
+"4. A handful of chopped nuts (almonds, pistachios)",
+"5. Saffron strands (optional)",
+"6. 1 tablespoon chopped or crushed dried fruits (optional)"],
+        procedure: [
+        "1. Pour 1 liter full-fat milk into a heavy-bottomed pan and bring it to a boil over medium heat, stirring continuously to prevent it from sticking to the bottom.",
+"2. Once the milk comes to a boil, reduce the heat to low and let it simmer. Keep stirring occasionally to avoid the formation of a skin on the surface.",
+"3. Add 1/2 cup sugar and continue to simmer the milk on low heat until it reduces to almost half, achieving a thicker consistency.",
+"4. Add 1/2 teaspoon cardamom powder, saffron strands (if using), and a handful of chopped nuts (almonds, pistachios). Stir well and let it simmer for a few more minutes until the flavors meld.",
+"5. Turn off the heat and let the basundi cool to room temperature. It will thicken further as it cools.",
+"6. Optionally, garnish with 1 tablespoon chopped or crushed dried fruits before serving.",
+"7. Refrigerate the basundi for a few hours before serving. Serve chilled, and enjoy this delightful Indian dessert!"],
+        videoID: "W29qXSYfgc4"
+      },
+
+
+      2: {
+        title: "Gulabjamun Recipe",
+        description: "Gulab Jamun is a popular Indian dessert made from khoya (reduced milk solids) or milk powder, shaped into small balls, deep-fried until golden brown, and then soaked in a sugar syrup flavored with cardamom and rose water",
+        ingredients: ["1. 1 cup sugar",
+"2. 1/2 cup water",
+"3. 1/2 teaspoon cardamom powder",
+"4. A few strands of saffron (optional)",
+"5. 1 teaspoon rose water"],
+        procedure: ["1. Combine khoya, all-purpose flour, baking soda, and ghee to form a dough with milk.",
+"2. Shape small, crack-free balls from the dough.",
+"3. Heat oil or ghee for deep frying, then fry the balls until golden brown.",
+"4. Prepare sugar syrup with sugar, water, cardamom, saffron, and rose water.",
+"5. Soak the fried Gulab Jamun in the warm sugar syrup for a few hours.",
+"6. Garnish with nuts and serve warm or at room temperature. Enjoy your Gulab Jamun!" , ],
+        videoID: "8MnL3LgK3eU"
+      },
+
+
+      3: {
+        title: "Kesari Recipe",
+        description: "Kesari, also known as Sheera or Suji Halwa, is a popular Indian sweet dish made from semolina (sooji/rawa), ghee (clarified butter), sugar, and water or milk.",
+        ingredients: ["1. 1 cup semolina (sooji/rawa)",
+"2. 1 cup sugar",
+"3. 1/4 cup ghee (clarified butter)",
+"4. 2 cups water or milk",
+"5. 1/2 teaspoon cardamom powder",
+"6. A pinch of saffron strands (optional)",
+"7. A handful of chopped nuts (cashews, almonds) and raisins for garnish"],
+        procedure: ["1. Roast 1 cup semolina in 1/4 cup ghee until golden brown and aromatic.",
+"2. In a separate pot, heat 2 cups water or milk and dissolve 1 cup sugar.",
+"3. Slowly add the roasted semolina to the sugar syrup, stirring to avoid lumps.",
+"4. Add 1/2 teaspoon cardamom powder and saffron strands (optional).",
+"5. Cook on low heat until the Kesari thickens; fry nuts and raisins in ghee separately.",
+"6. Garnish the Kesari with fried nuts and raisins. Serve warm and enjoy!"],
+        videoID: "OGQ_E1HZ8AI"
+      },
+
+
+      4: {
+        title: "Payasam Recipe",
+        description: "Pal Payasam, also known as Pal Payasam, is a South Indian rice pudding made with rice, milk, and sugar.",
+        ingredients: ["Sevai","Turmeric powder","Salt","Water","Chilly Powder","Mustard seeds","Oil","Curry Leaves"],
+        procedure: [ "1. In a pan, heat oil and add mustard seeds. Once they splutter, add curry leaves.",
+"2. Add finely chopped onions and sauté until golden brown.",
+"3. Stir in ginger-garlic paste, turmeric powder, red chili powder, and coriander powder. Cook until the raw aroma disappears.",
+"4. Add diced potatoes and mix well to coat them with the spices.",
+"5. Cover and cook on medium heat, stirring occasionally, until the potatoes are tender and golden.",
+"6. Season with salt and garnish with fresh coriander leaves.",
+
+"Serve hot Sevai as a side dish with rice or roti for a flavorful and satisfying experience.",
+        ],
+        videoID: "7tQuAdfGJnI"
+      },
+
+
+      5: {
+        title: "Cake Recipe",
+        description: "Lemon Rice is a zesty and aromatic South Indian dish made by tempering cooked rice with mustard seeds, curry leaves, and turmeric also with the addition of tangy lemon juice.",
+        ingredients: ["1.All-purpose flour","2.Cocoa powder","3.Baking powder","Baking soda","Salt","Unsalted butter","Granulated sugar","Eggs","Vanilla extract","Milk"],
+        procedure: ["1.Preheat oven to 350°F (180°C) and grease two 9-inch cake pans.",
+"2.Whisk together 1¾ cups flour, ¾ cup cocoa, 1½ tsp baking powder, 1½ tsp baking soda, and ½ tsp salt.",
+"3.Cream 1 cup softened butter with 2 cups sugar, then add 3 eggs and 2 tsp vanilla.",
+"4.Alternate adding dry mix and 1½ cups milk to the wet ingredients.",
+"Divide batter into pans and bake for 25-30 mins.",
+"Cool, frost as desired, and enjoy your homemade chocolate cake!",],
+        videoID: "z5rpft6xZwk"
+      },
+
+
+    };
+
+    // Show the modal with dynamic content when clicking the "View Recipe" button
+    $('.view-recipe').on('click', function() {
+      // Get the recipe ID from the data attribute
+      const recipeID = $(this).data('recipe-id');
+      const recipeDetails = recipes[recipeID];
+
+      // Populate modal with dynamic content
+      $('#modalTitle').text(recipeDetails.title);
+      $('#modalDescription').text(recipeDetails.description);
+      $('#modalIngredients').html(recipeDetails.ingredients.map(ingredient => `<li>${ingredient}</li>`).join(''));
+      $('#modalProcedure').html(recipeDetails.procedure.map(step => `<p>${step}</p>`).join(''));
+      $('#modalVideo').attr('src', `https://www.youtube.com/embed/${recipeDetails.videoID}`);
+
+      // Show the modal
+      $('#recipeModal').removeClass('hidden');
+    });
+
+    // Close the modal when clicking the close button or outside the modal
+    $('#closeModal, #recipeModal').on('click', function() {
+      $('#recipeModal').addClass('hidden');
+    });
+
+    // Prevent modal from closing when clicking inside the modal
+    $('.modal-content').on('click', function(event) {
+      event.stopPropagation();
+    });
+  });
+</script>
+
+<!-- Your footer or other content goes here -->
+
+</body>
+</html>
+

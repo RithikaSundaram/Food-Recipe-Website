@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ... -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="../styles/main.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+
+<div class="container mx-auto mt-8 flex space-x-4">
+  <!-- Breakfast Recipe Bar 1 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/White pasta.jpg" alt="White Sauce Pasta " class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="1">View Recipe</button>
+    </div>
+  </div>
+ <!-- Breakfast Recipe Bar 2 -->
+ <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/chapathi.jpg" alt="Chapathi" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="2">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 3 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/Panner.jpg" alt="Palak Paneer" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 20 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="3">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 4 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/Sevai.jpg" alt="Poori" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="4">View Recipe</button>
+    </div>
+  </div>
+
+  <!-- Breakfast Recipe Bar 5 -->
+  <div class="bg-gray-200 p-0 rounded-md overflow-hidden">
+    <!-- Image -->
+    <img src="C:/Users/USER/Pictures/Parotta.jpg" alt="Pongal" class="w-full h-auto max-w-xs">
+    <!-- Recipe Details -->
+    <div class="p-4">
+      <p class="text-lg font-bold mb-2">Preparation Time: 10 minutes</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md view-recipe" data-recipe-id="5">View Recipe</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Modal HTML -->
+<div id="recipeModal" class="fixed inset-0 z-50 hidden overflow-auto bg-black bg-opacity-50">
+  <div class="relative w-full max-w-md p-4 mx-auto mt-10">
+    <div class="bg-white rounded-md p-4">
+      <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
+      <h3 class="text-lg font-bold mb-2">Description:</h3>
+      <p id="modalDescription"></p>
+      <h3 class="text-lg font-bold mb-2">Ingredients:</h3>
+      <ul id="modalIngredients"></ul>
+      <h3 class="text-lg font-bold mb-2">Procedure:</h3>
+      <div id="modalProcedure"></div>
+      <iframe id="modalVideo" width="100%" height="315" src="" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+      <button id="closeModal" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add this script to the end of your body -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function() {
+    const recipes = {
+      1: {
+        title: "White Sauce Pasta Recipe",
+        description:"White Sauce Pasta is a creamy and indulgent dish that combines al dente pasta with a luscious white sauce.",
+        ingredients: ["1. 250g pasta (penne, fettuccine, or your choice)",  
+"2. 2 tablespoons butter",  
+"3. 2 tablespoons all-purpose flour",  
+"4. 2 cups milk",  
+"5. 2 cloves garlic, minced",  
+"6. 1 cup grated Parmesan cheese",  
+"7. Salt and pepper to taste",  
+"8. Fresh parsley for garnish (optional)"],
+        procedure: [
+        "Cook the pasta according to package instructions. Drain and set aside.",
+"In a saucepan, melt butter over medium heat. Add minced garlic and sauté until fragrant.",
+"Stir in the flour to make a roux. Cook for a minute to eliminate the raw taste.",
+"Gradually whisk in the milk, ensuring there are no lumps. Cook until the sauce thickens.",
+"Add grated Parmesan cheese, salt, and pepper. Stir until the cheese melts and the sauce is smooth.",
+"Toss the cooked pasta into the white sauce until well-coated.",
+"Garnish with fresh parsley and additional Parmesan if desired.",
+"Serve the creamy White Sauce Pasta hot and enjoy this delightful and comforting dish." ],
+        videoID: "l_HOohJZL0U"
+      },
+
+
+      2: {
+        title: "Chapathi Recipe",
+        description: "Chapati, a staple in Indian cuisine, is a simple and unleavened flatbread made from whole wheat flour.",
+        ingredients: ["1. 2 cups whole wheat flour (atta)",  
+"2. Water (as needed)",  
+"3. 1/2 teaspoon salt (optional)",  
+"4. Ghee or oil (for brushing, optional)"],
+        procedure: [
+        "1. In a large mixing bowl, combine whole wheat flour with a pinch of salt (if using)",
+"2. Gradually add water and knead the mixture to form a smooth and soft dough. Add water as needed to achieve the right consistency",
+"3. Divide the dough into golf ball-sized portions",
+"4. On a floured surface, roll each portion into a thin, round disc (chapati)",
+"5. Heat a griddle or tawa over medium-high heat",
+"6. Place the rolled chapati on the hot surface and cook until bubbles appear on the surface",
+"7. Flip the chapati and cook the other side until light brown spots appear",
+"8. If desired, brush the chapati with ghee or oil during cooking", ],
+        videoID: "ENXQ5lm4_fU"
+      },
+
+
+      3: {
+        title: "Palak Panner Recipe",
+        description: "Palak Paneer is a classic North Indian dish featuring paneer (Indian cottage cheese) in a creamy spinach gravy",
+        ingredients: ["1.2 cups fresh spinach leaves, washed and chopped",
+"2. 200g paneer, cut into cubes",
+"3. 1 large onion, finely chopped",
+"4. 2 tomatoes, chopped",
+"5. 2 green chilies, chopped",
+"6. 1 tablespoon ginger-garlic paste",
+"7. 1/2 teaspoon cumin seeds",
+"8. 1/2 teaspoon turmeric powder",
+"9. 1 teaspoon garam masala",
+"10. 1/2 cup heavy cream",
+"11. Salt to taste",
+"12. 2 tablespoons oil or ghee",],
+        procedure: ["1. Blanch the chopped spinach in hot water for 2 minutes, then plunge into cold water. Puree the spinach and set aside.",
+"2. In a pan, heat oil or ghee and add cumin seeds. Once they splutter, add chopped onions and sauté until golden brown.",
+"3. Add ginger-garlic paste and green chilies, cooking until the raw smell disappears.",
+"4. Stir in chopped tomatoes, turmeric powder, and garam masala. Cook until tomatoes are soft.",
+"5. Add the spinach puree, salt, and paneer cubes. Simmer for 5-7 minutes.",
+"6. Pour in the heavy cream, stir well, and cook for an additional 2-3 minutes.",
+"7. Garnish with a drizzle of cream and serve hot with roti or rice.",
+"Enjoy this creamy and nutritious Palak Paneer as a wholesome vegetarian meal.",],
+        videoID: "JI4DtsiYm34"
+      },
+
+
+      4: {
+        title: "Sevai Recipe",
+        description: "Sevai is a South Indian delicacy crafted from rice flour dough, extruded into thin strands, and steamed to perfection.",
+        ingredients: ["Sevai","Turmeric powder","Salt","Water","Chilly Powder","Mustard seeds","Oil","Curry Leaves"],
+        procedure: [ "1. In a pan, heat oil and add mustard seeds. Once they splutter, add curry leaves.",
+"2. Add finely chopped onions and sauté until golden brown.",
+"3. Stir in ginger-garlic paste, turmeric powder, red chili powder, and coriander powder. Cook until the raw aroma disappears.",
+"4. Add diced potatoes and mix well to coat them with the spices.",
+"5. Cover and cook on medium heat, stirring occasionally, until the potatoes are tender and golden.",
+"6. Season with salt and garnish with fresh coriander leaves.",
+
+"Serve hot Sevai as a side dish with rice or roti for a flavorful and satisfying experience.",
+        ],
+        videoID: "gQf61boskCI"
+      },
+
+
+      5: {
+        title: "Parotta Recipe",
+        description: "Parota is a zesty and aromatic South Indian dish made by maida.",
+        ingredients: ["1. 2 cups maida",
+"2. 2 tablespoons oil",
+"3.2 tablespoon salt",
+"4. Baking soda"],
+        procedure: [" 1.In a large bowl, combine all-purpose flour, salt, and ghee or oil",
+"2. Gradually add water and knead the mixture into a soft, smooth dough",
+"3.Divide the dough into equal portions and roll each portion into a ball",
+"4.Flatten each ball into a thin, round disc on a floured surface",
+"5.Heat a griddle or tawa, place the rolled disc, and cook with ghee or oil until both sides are golden brown",
+"6.Gently press the edges while cooking to create layers in the parota",
+"7.Repeat for the remaining portions",
+
+"Serve hot plain parotas with your favorite curry, chutney, or yogurt for a simple and delightful meal.",
+        ],
+        videoID: "G8BSGywfRMs"
+      },
+
+
+    };
+
+   
+    $('.view-recipe').on('click', function() {
+      // Get the recipe ID from the data attribute
+      const recipeID = $(this).data('recipe-id');
+      const recipeDetails = recipes[recipeID];
+
+      // Populate modal with dynamic content
+      $('#modalTitle').text(recipeDetails.title);
+      $('#modalDescription').text(recipeDetails.description);
+      $('#modalIngredients').html(recipeDetails.ingredients.map(ingredient => `<li>${ingredient}</li>`).join(''));
+      $('#modalProcedure').html(recipeDetails.procedure.map(step => `<p>${step}</p>`).join(''));
+      $('#modalVideo').attr('src', `https://www.youtube.com/embed/${recipeDetails.videoID}`);
+
+      // Show the modal
+      $('#recipeModal').removeClass('hidden');
+    });
+
+    // Close the modal when clicking the close button or outside the modal
+    $('#closeModal, #recipeModal').on('click', function() {
+      $('#recipeModal').addClass('hidden');
+    });
+
+    // Prevent modal from closing when clicking inside the modal
+    $('.modal-content').on('click', function(event) {
+      event.stopPropagation();
+    });
+  });
+</script>
+
+
+</body>
+</html>
